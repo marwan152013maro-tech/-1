@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموسوعة العلمية الشاملة للاستبدال الحسي وديناميكية الدماغ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-depth: #030712;
+            --card-3d-bg: rgba(17, 24, 39, 0.75);
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-rose: #f43f5e;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-indigo: #6366f1;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --glow-blue: rgba(59, 130, 246, 0.35);
+            --glow-purple: rgba(139, 92, 246, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-depth);
+            color: var(--text-main);
+            line-height: 1.85;
+            overflow-x: hidden;
+            perspective: 1200px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
+            padding-bottom: 80px;
+        }
+
+        header {
+            text-align: center;
+            padding: 90px 20px 50px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .hero-badge {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px var(--glow-blue);
+            transform: translateZ(20px);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 3D Glass Card */
+        .card-3d {
+            background: var(--card-3d-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 25px var(--glow-purple);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 8px 20px var(--glow-purple);
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .explain-card {
+            background: rgba(15, 23, 42, 0.8);
+            border-right: 4px solid var(--accent-amber);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 18px 0;
+        }
+
+        .explain-card .title {
+            color: var(--accent-amber);
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explain-card p {
+            font-size: 0.98rem;
+            color: #d1d5db;
+            margin: 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sub-card {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .sub-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .wave-badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--accent-indigo);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .user-tag {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .obstacle-box {
+            background: rgba(244, 63, 94, 0.06);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .obstacle-box h4 {
+            color: var(--accent-rose);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .solution-box {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .solution-box h4 {
+            color: var(--accent-emerald);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-right: 20px;
+        }
+
+        strong {
+            color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="hero-badge">الموسوعة الشاملة والدقيقة</span>
+        <h1>علم الاستبدال الحسي وديناميكية الدماغ</h1>
+        <p>مرجع علمي مفصل يجمع الآليات العصبية، موجات الدماغ (EEG)، الفيزياء الكهرومغناطيسية للخلية، التطبيقات الميدانية، وتفاصيل الاكتشاف التاريخية.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card-3d">
+            <div class="section-header">
+                <div class="icon-box">01</div>
+                <h2>المفهوم العلمي، الفيزياء، والتفكيك الدقيق</h2>
+            </div>
+            
+            <p><strong>الاستبدال الحسي (Sensory Substitution):</strong> هو عملية إعادة توجيه الإشارات البيئية من حاسة مفقودة (كالبصر) إلى قناة حسية بديلة (كالمس أو السمع). يقوم الدماغ بترجمة هذا الترميز لبناء إدراك مكاني وبصري كامل.</p>
+
+            <div class="explain-card">
+                <div class="title">💡 الفيزياء العصبية: كيف يقرأ الخلية التحفيز؟ (Action Potential)</div>
+                <p>عند وضع شريحة اللسان (BrainPort)، تُرسل شحنات كهربائية منخفضة جداً (بين 2 إلى 5 فولت). تؤدي هذه الشحنات لفتح قنوات الصوديوم والبوكاسيوم في غشاء الخلية العصبية، مما يولد "جهد فعل" (Action Potential) ينتقل عبر العصب اللساني الفكي العلوي (Trigeminal Nerve) مباشرة إلى جذع الدماغ، ثم القشرة المخية.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <h3>القشرة البصرية V1</h3>
+                    <p>المحيط الخلفي للدماغ في الفص القذالي (Occipital Lobe) المسؤول عن المعالجة البصرية.</p>
+                    <div class="explain-card" style="margin-top:10px;">
+                        <div class="title">🔍 ماذا يحدث للـ V1 عند العمى؟</div>
+                        <p>تظل القشرة حية، وعند تدريب المريض على الاستبدال الحسي، تنشط الـ V1 مجدداً لمعالجة المدخلات اللمسية والصوتية، كإثبات لنظرية "الدماغ متعدد الأنماط" (Metamodal Brain Theory).</p>
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <h3>البروتينات الناقلة (BDNF) واللدونة</h3>
+                    <p>أثناء التدريب المكثف على أجهزة الاستبدال الحسي، يفرز الدماغ بروتين **BDNF (عامل النمو العصبي)** الذي يسرّع نمو تشعبات شجيرية جديدة (Dendrites) تضمن الربط بين المناطق اللمسية والبصرية.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            <div class="section-header">
+                <div class="icon-box">02</div>
+                <h2>الموجات الكهربائية للدماغ (Brainwaves) أثناء الاستبدال الحسي</h2>
+            </div>
+
+            <p>يتواصل الدماغ عبر تيار كهربائي نبضي يُقاس برسام الدماغ (EEG). يتغير نمط وتردد هذه الموجات بشكل جذري أثناء مراحل التعلم والاستبدال الحسي:</p>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="wave-badge">موجات ألفا (Alpha - 8 to 12 Hz)</span>
+                    <h3>التركيز المسترخِي وإعادة الهيكلة</h3>
+                    <p>في المبصرين، ترتفع موجات ألفا عند إغلاق العينين. لدى المكفوفين، تكون ألفا منخفضة في المنطقة البصرية V1. عند استخدام أجهزة الاستبدال الحسي والتعود عليها، تعود **موجات ألفا** للارتفاع والتنظيم، مما يدل على استقرار المعالجة في القشرة البصرية.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="wave-badge">موجات بيتا (Beta - 13 to 30 Hz)</span>
+                    <h3>الإجهاد المعرفي والترجمة الواعية</h3>
+                    <p>في المراحل الأولى للتدريب على أجهزة مثل (The vOICe أو BrainPort)، تسجل أجهزة القياس ارتفاعاً حاداً في **موجات بيتا** بالفص الجبهي (Frontal Lobe)، نتيجة التركيز الجسيم والجهد الذهني المبذول لفك شفرة الصوت أو الاهتزاز.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="wave-badge">موجات جاما (Gamma - 30 to 100 Hz)</span>
+                    <h3>شرارة الرؤية والربط الحسي (Feature Binding)</h3>
+                    <p>تعتبر **موجات جاما** هي التوقيع العصبي الأهم؛ حيث يظهر تزامن موحد في موجات جاما بين الفص الجداري (اللمسي) والفص القذالي (البصري) لحظة إدراك الكفيف للشكل، وهو دليل فسيولوجي على تحول الإشارة من "لمس" إلى "رؤية ذهنية".</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="wave-badge">موجات ثيتا (Theta - 4 to 8 Hz)</span>
+                    <h3>تثبيت الذاكرة المكانية</h3>
+                    <p>تنشط **موجات ثيتا** في منطقة الحصين (Hippocampus) أثناء تنقل المستخدم وتلافيه للعوائق، وهي المسؤولة عن بناء "الخريطة المعرفية المكانية" لبيئته المحيطة.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            <div class="section-header">
+                <div class="icon-box">03</div>
+                <h2>السجل التاريخي للاكتشاف والعلماء</h2>
+            </div>
+
+            <p>بدأت القصة عام 1959 عندما أُصيب والد عالم الأعصاب **د. بول باخ ي ريتا (Paul Bach-y-Rita)** بجلطة دمرت جذع دماغه المسئول عن الحركة. رفض بول الاستسلام وأعاد تدريب والده بتمارين مكثفة حتى تعافى تماماً. بعد وفاة الوالد لاحقاً، أثبت التشريح أن 97% من المسارات العصبية الحركية في جذع الدماغ كانت مدمّرة تماماً، وأن الدماغ قام بإنشاء مسارات بديلة بنفسه!</p>
+
+            <p>من هذه التجربة، اخترع بول عام 1969 كرسي **TVSS** الذي نقل الصور لظهر الكفيف عبر 400 محفز، وفي أواخر التسعينيات طوّر تقنية **BrainPort** للانتقال للسان.</p>
+        </div>
+
+        <div class="card-3d">
+            <div class="section-header">
+                <div class="icon-box">04</div>
+                <h2>العوائق الفسيولوجية والتفاصيل التقنية الصغرى</h2>
+            </div>
+
+            <div class="obstacle-box">
+                <h4>❌ العائق 1: خدر الجلد وتأقلم المستشعرات (Sensory Adaptation)</h4>
+                <p>تتأقلم المستقبلات الحسية وتتوقف عن إرسال الإشارات للدماغ عند تعرضها لاهتزاز مستمر وثابت (كما يحدث حين تقتني ساعة وتنسى وجودها على معصمك).</p>
+            </div>
+            <div class="solution-box">
+                <h4>✔ الحل: التنبيه النبضي الديناميكي (Dynamic Pulsing)</h4>
+                <p>تغيير تردد ومكان النبضات بيكرو-ثوانٍ متصلة لمنع تأقلم الأعصاب وتأمين استمرار البث المباشر للدماغ.</p>
+            </div>
+
+            <div class="obstacle-box">
+                <h4>❌ العائق 2: محدودية التمييز المكاني على الجلد</h4>
+                <p>الظهر لا يستطيع تمييز نقطتين قريبتين من بعضهما بشكل دقيق (ضعف الـ Spatial Resolution).</p>
+            </div>
+            <div class="solution-box">
+                <h4>✔ الحل: استخدام اللسان (BrainPort)</h4>
+                <p>يحتوي اللسان على أعلى كثافة ألياف حسية في الجسم، واللعاب يوفر موصلية كهربائية نقية بجهد منخفض جداً، مما أتاح رفع دقة الصورة لنقاط متناهية الصغر.</p>
+            </div>
+        </div>
+
+        <div class="card-3d">
+            <div class="section-header">
+                <div class="icon-box">05</div>
+                <h2>من استخدم هذه التقنية وفيما استُعملت بالتفصيل؟</h2>
+            </div>
+
+            <div class="grid-2">
+                <div class="sub-card">
+                    <span class="user-tag">المكفوفون كلياً</span>
+                    <h3>القراءة والملاحة اليومية</h3>
+                    <p>استُخدم جهاز **BrainPort V100** لتمكين المكفوفين من قراءة أرقام الأبواب، التمييز بين الكؤوس وسكب الماء بدقة دون خطأ، والتعرف على الوجوه والممرات.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="user-tag">مرضى تلف الجهاز الدهليزي</span>
+                    <h3>علاج الدوار وفقدان التوازن</h3>
+                    <p>استُخدمت تقنية الاستبدال الحسي عبر حزام مزود بـ "ميزان مائي إلكتروني" موصول باللسان؛ لمساعدة المرضى الذين فقدوا التوازن بالأذن الداخلية على الوقوف والمشي بثبات.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="user-tag">فاقدو السمع (الصم)</span>
+                    <h3>فهم الكلام عبر اهتزاز الجذع</h3>
+                    <p>عبر سترة **VEST** (تطوير د. ديفيد إيجلمان)، تحول الأصوات لاهتزازات على الجسد، وتمكن الصم من فهم الكلمات وتلقي الحديث دون قراءة الشفاه.</p>
+                </div>
+
+                <div class="sub-card">
+                    <span class="user-tag">مبتورو الأطراف</span>
+                    <h3>الإحساس باللمس في الأطراف الصناعية</h3>
+                    <p>تم ربط حساسات الضغط بالأيدي الاصطناعية ونقل إشاراتها لجلد الذراع؛ مما أتاح للمستخدمين التحكم بمسكة الأشياء الحساسة مثل البيض والكؤوس الزجاجية دون كسرها.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <title>تأثير النيون</title>
+    <style>
+        /* نضع كود الـ CSS هنا */
+        h1 {
+            color: #00ffcc;
+            font-size: 3rem;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+            background-color: #0f172a;
+            padding: 20px;
+            text-align: center; /* لتوسيط النص */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>مروان محمد عكش محمد موسي</h1>
+
+</body>
+
+</body>
+</html>
